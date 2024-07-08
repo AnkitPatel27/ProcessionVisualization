@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';  
+import MapComponent from './MapComponent';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <h1>Route from Ahmedabad to Pune</h1>
+      <MapComponent />
     </div>
   );
 }
+
+
+// Fix for default marker icon
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
+
+
+
+
+
+
 
 export default App;
